@@ -1,14 +1,14 @@
-#提交就可以直接用的配置模板文件。 user: root/password: password
-#a template config can be use with a apply. user: root/password: password
+#提交就可以直接用的配置模板文件。 user: root/password: admin
+#a template config can be use with a apply. user: root/password: admin
 http:
   pprof:
     port: 6060
     enabled: false
   address: 0.0.0.0:3000
-  session_ttl: 720h
+  session_ttl: 24h
 users:
   - name: root
-    password: $2y$10$VJ6oSzqPofT6DAO6xXino.pDpdXYBY0gzn5B4mYfJtavdSgxljKrK
+    password: $2y$10$ML7v5WXsM1xN12YpR15f4uSGGAzk.QXhwu99lczQ8NgrPcTYRY9Ei
 auth_attempts: 5
 block_auth_min: 15
 http_proxy: ""
@@ -31,13 +31,9 @@ dns:
   bootstrap_dns:
     - 119.29.29.29
     - 223.5.5.5
-    - 101.6.6.6
-    - 119.29.29.29
-    - 101.226.4.6
-    - 180.76.76.76
   fallback_dns:
-    - https://dns.quad9.net/dns-query
-    - https://dns.alidns.com/dns-query
+   - https://dns.quad9.net/dns-query
+   - https://dns.alidns.com/dns-query
   all_servers: true
   fastest_addr: false
   fastest_timeout: 1s
@@ -104,19 +100,19 @@ filters:
     url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
     name: AdGuard Simplified Domain Names filter
     id: 1
-    - enabled: true
+  - enabled: true
     url: https://adaway.org/hosts.txt
     name: AdAway
     id: 2
-    - enabled: false
+  - enabled: false
     url: https://hosts-file.net/ad_servers.txt
     name: hpHosts - Ad and Tracking servers only
     id: 3
   - enabled: true
-    url: https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-easylist.txt
-    name: anti-AD
+    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-easylist.txt
+    name: anti-AD AdGuardHome（DNS过滤）
     id: 1628750871
-    - enabled: true
+  - enabled: true
     url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockdns.txt
     name: 217heidai
     id: 1724947228
@@ -193,7 +189,10 @@ whitelist_filters:
     url: https://cdn.jsdelivr.net/gh/scarletbane/AdGuard-Home-Whitelist@main/whitelist.txt
     name: scarletbane/AdGuard-Home-Whitelist
     id: 1677875740
-user_rules: []
+user_rules:
+  - '@@||gsp0.baidu.com^$important'
+  - '@@||analytics.google.com^$important'
+  - ""
 dhcp:
   enabled: false
   interface_name: ""
@@ -261,4 +260,4 @@ os:
   group: ""
   user: ""
   rlimit_nofile: 0
-schema_version: 28
+schema_version: 27
