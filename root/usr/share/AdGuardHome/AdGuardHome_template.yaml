@@ -17,23 +17,27 @@ theme: auto
 dns:
   bind_hosts:
     - 0.0.0.0
-  port: 1745
+  port: 5553
   anonymize_client_ip: false
   ratelimit: 0
   ratelimit_whitelist: []
   refuse_any: false
   upstream_dns:
-    - 223.5.5.5
+    - https://dns.decloudus.com/dns-query
+    - https://doh.apad.pro/cn-query
+    - https://dns.bebasid.com/unfiltered
+    - https://doh.pub/dns-query
   upstream_dns_file:
   bootstrap_dns:
     - 119.29.29.29
     - 223.5.5.5
-    - 144.144.144.144
     - 101.6.6.6
     - 119.29.29.29
     - 101.226.4.6
     - 180.76.76.76
-  fallback_dns: []
+  fallback_dns:
+    - https://dns.quad9.net/dns-query
+    - https://dns.alidns.com/dns-query
   all_servers: true
   fastest_addr: false
   fastest_timeout: 1s
@@ -98,12 +102,24 @@ statistics:
 filters:
   - enabled: true
     url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-    name: AdGuard DNS filter
-    id: 1628750870
+    name: AdGuard Simplified Domain Names filter
+    id: 1
+    - enabled: true
+    url: https://adaway.org/hosts.txt
+    name: AdAway
+    id: 2
+    - enabled: false
+    url: https://hosts-file.net/ad_servers.txt
+    name: hpHosts - Ad and Tracking servers only
+    id: 3
   - enabled: true
-    url: https://anti-ad.net/easylist.txt
+    url: https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-easylist.txt
     name: anti-AD
     id: 1628750871
+    - enabled: true
+    url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockdns.txt
+    name: 217heidai
+    id: 1724947228
   - enabled: true
     url: https://easylist-downloads.adblockplus.org/easylist.txt
     name: EasyList
@@ -177,10 +193,7 @@ whitelist_filters:
     url: https://cdn.jsdelivr.net/gh/scarletbane/AdGuard-Home-Whitelist@main/whitelist.txt
     name: scarletbane/AdGuard-Home-Whitelist
     id: 1677875740
-user_rules:
-  - '@@||gsp0.baidu.com^$important'
-  - '@@||analytics.google.com^$important'
-  - ""
+user_rules: []
 dhcp:
   enabled: false
   interface_name: ""
@@ -248,4 +261,4 @@ os:
   group: ""
   user: ""
   rlimit_nofile: 0
-schema_version: 27
+schema_version: 28
