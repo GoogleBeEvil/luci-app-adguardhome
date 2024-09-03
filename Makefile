@@ -5,12 +5,12 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=luci-app-adguardhome
-PKG_VERSION:=1.8-2023101
+PKG_NAME:=luci-app-adguardhome-fw4
+PKG_VERSION:=1.8-20240903
 PKG_RELEASE:=1
 PKG_MAINTAINER:=<https://github.com/rufengsuixing/luci-app-adguardhome>
 
-LUCI_TITLE:=LuCI app for adguardhome
+LUCI_TITLE:=LuCI app for adguardhome firewall4 compatible
 LUCI_DEPENDS:=+!wget&&!curl&&!wget-ssl:curl
 LUCI_PKGARCH:=all
 LUCI_DESCRIPTION:=LuCI support for adguardhome
